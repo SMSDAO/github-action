@@ -2,22 +2,24 @@
 
 ## Overview
 
-This guide covers administration of the Renovate GitHub Action deployment, including user management, RBAC configuration, billing controls, security settings, and audit logging.
+This guide covers administration of the Renovate GitHub Action deployment, including access governance, billing controls, security settings, and audit logging.
 
-## RBAC Roles
+## Access Governance
 
-The action supports four roles:
+This action does not implement application-level RBAC — access control is enforced through GitHub's native permission model and Renovate's self-hosted configuration options. The table below maps common organizational roles to the appropriate GitHub permission level and Renovate config scope:
 
-| Role          | Description                                                                       |
-| ------------- | --------------------------------------------------------------------------------- |
-| **Admin**     | Full system access: user management, RBAC, billing, secrets, configuration        |
-| **Developer** | Access to logs, environment configuration, diagnostics, and deployment management |
-| **User**      | Standard access: manage own repositories, view activity, create/merge PRs         |
-| **Auditor**   | Read-only access to audit logs, metrics, and system health                        |
+| Organizational Role     | GitHub Permission  | Renovate Scope                                                             |
+| ----------------------- | ------------------ | -------------------------------------------------------------------------- |
+| **Org Admin**           | Organization owner | Can manage secrets, tokens, and workflow permissions for all repos         |
+| **Repo Admin**          | Repository admin   | Can configure `renovate.json`, approve/merge PRs, manage branch protection |
+| **Developer**           | Repository write   | Can review and merge Renovate PRs, adjust per-repo config                  |
+| **Read-only / Auditor** | Repository read    | Can view Renovate PRs and logs; no ability to modify config                |
 
-## User Management
+For team-level access control, use [GitHub Teams](https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams) to assign repository permissions to groups of users.
 
-Admins manage users via the `RENOVATE_AUTODISCOVER_FILTER` and organization membership settings in the Renovate configuration:
+## Repository Scoping (User Management)
+
+Admins control which repositories Renovate manages via the `RENOVATE_AUTODISCOVER_FILTER` and related Renovate configuration options:
 
 ```js
 // renovate.json / global config

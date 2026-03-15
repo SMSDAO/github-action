@@ -46,19 +46,19 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 
 ## UI Preview
 
-Operational dashboards for the Renovate GitHub Action — featuring the **Neo-Glow** design system.
+The screenshots below are **conceptual mockups** illustrating how operational metrics for a Renovate self-hosted deployment could be surfaced. They are not part of a shipped UI — this repository is a GitHub Action (not a web application).
 
 ### User Dashboard
 
-<img src="./docs/assets/ui/user-dashboard.png" alt="User Dashboard – activity metrics, managed repositories, weekly PR activity, and usage metering" width="100%" />
+<img src="./docs/assets/ui/user-dashboard.png" alt="Conceptual mockup – User view: activity metrics, managed repositories, weekly PR activity, and usage metering" width="100%" />
 
 ### Admin Dashboard
 
-<img src="./docs/assets/ui/admin-dashboard.png" alt="Admin Dashboard – user management with RBAC roles, system health, audit log, and billing controls" width="100%" />
+<img src="./docs/assets/ui/admin-dashboard.png" alt="Conceptual mockup – Admin view: repository scoping, system health, audit log, and billing controls" width="100%" />
 
 ### Developer Dashboard
 
-<img src="./docs/assets/ui/developer-dashboard.png" alt="Developer Dashboard – live log viewer, CI pipeline steps, and environment configuration" width="100%" />
+<img src="./docs/assets/ui/developer-dashboard.png" alt="Conceptual mockup – Developer view: live log viewer, CI pipeline steps, and environment configuration" width="100%" />
 
 ## Badges
 
