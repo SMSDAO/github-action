@@ -29,7 +29,6 @@ jobs:
 
   commitlint:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' || github.repository_owner != github.event.pull_request.head.repo.owner.login }}
 
     steps:
       - name: Checkout
@@ -47,7 +46,6 @@ jobs:
     needs:
       - prepare
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' || github.repository_owner != github.event.pull_request.head.repo.owner.login }}
 
     steps:
       - name: Checkout
@@ -60,6 +58,9 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
 
   e2e:
     needs:
@@ -137,6 +138,11 @@ jobs:
       - commitlint
       - e2e
       - renovate-config-validator
+    if: |
+      always() &&
+      !contains(needs.*.result, 'failure') &&
+      !contains(needs.*.result, 'cancelled') &&
+      github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     steps:
       - name: Setup Git user
@@ -151,32 +157,32 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0 # required for semantic release
-          ref: 'release'
           show-progress: false
           filter: blob:none # we don't need all blobs, only the full tree
 
-      - name: fetch pr
-        if: ${{github.event_name == 'pull_request'}}
-        run: git fetch origin +${{ github.sha }}:${{ github.ref }}
-
-      - name: Merge main
+      - name: Initialize or update release branch
         id: merge
         run: |
+          # Create the release branch from current HEAD if it doesn't exist
+          if ! git ls-remote --exit-code --heads origin release > /dev/null 2>&1; then
+            git checkout -b release
+          else
+            git fetch origin release:refs/remotes/origin/release
+            git checkout -B release origin/release
+          fi
           git merge --no-ff -Xtheirs -m 'skip: merge (${{ github.sha }}) [skip release]' ${{ github.sha }}
-          commit=$(git rev-parse HEAD)
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: 📥 Setup Node.js
         uses: ./.github/actions/setup-node
 
       - name: Push release branch
         run: git push origin release:release
-        if: ${{ github.ref_name == github.event.repository.default_branch }}
 
       - name: Release
         run: |
           # override for semantic-release
           export GITHUB_REF=refs/heads/release GITHUB_SHA=${{ steps.merge.outputs.commit }}
           pnpm release
-        if: ${{ github.ref_name == github.event.repository.default_branch }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
