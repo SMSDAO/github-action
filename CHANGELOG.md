@@ -12,9 +12,13 @@ For historical changelogs, see the [GitHub releases page](https://github.com/ren
 ### Added
 
 - `docs/` directory with architecture, deployment, environment variables, and user guides
+- `docs/guides/admin-guide.md` — RBAC, billing controls, audit logging, security configuration
+- `docs/guides/developer-guide.md` — build system internals, CI/CD pipeline, debugging, contributing
+- `docs/assets/ui/` — Neo-Glow dashboard screenshots: user, admin, and developer views
 - `typecheck` script (`tsc --noEmit`) to `package.json` for explicit TypeScript validation
 - Typecheck step in CI `lint` job
 - Security scanning workflow (`.github/workflows/security.yml`)
+- `README.md`: added `Documentation` section linking to all docs and `UI Preview` section embedding all three dashboard screenshots
 
 ### Changed
 

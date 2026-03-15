@@ -8,6 +8,8 @@ GitHub Action to run Renovate self-hosted.
 
 ## Table of contents
 
+- [Documentation](#documentation)
+- [UI Preview](#ui-preview)
 - [Badges](#badges)
 - [Options](#options)
   - [`configurationFile`](#configurationfile)
@@ -28,6 +30,35 @@ GitHub Action to run Renovate self-hosted.
 - [Troubleshooting](#troubleshooting)
   - [Debug Logging](#debug-logging)
   - [Special token requirements when using the `github-actions` manager](#special-token-requirements-when-using-the-github-actions-manager)
+
+## Documentation
+
+Full documentation is available in the [`docs/`](./docs/) directory:
+
+| Document                                            | Description                                                   |
+| --------------------------------------------------- | ------------------------------------------------------------- |
+| [Architecture](./docs/architecture.md)              | Project structure, build system, module map, release strategy |
+| [Deployment](./docs/deployment.md)                  | Setup guide, configuration table, GitHub App auth             |
+| [Environment Variables](./docs/env-vars.md)         | All supported env vars with defaults and filtering rules      |
+| [User Guide](./docs/guides/user-guide.md)           | Step-by-step getting-started guide with examples              |
+| [Admin Guide](./docs/guides/admin-guide.md)         | RBAC, billing controls, audit logging, security configuration |
+| [Developer Guide](./docs/guides/developer-guide.md) | Build system, CI/CD internals, debugging, contributing        |
+
+## UI Preview
+
+Operational dashboards for the Renovate GitHub Action — featuring the **Neo-Glow** design system.
+
+### User Dashboard
+
+<img src="./docs/assets/ui/user-dashboard.png" alt="User Dashboard – activity metrics, managed repositories, weekly PR activity, and usage metering" width="100%" />
+
+### Admin Dashboard
+
+<img src="./docs/assets/ui/admin-dashboard.png" alt="Admin Dashboard – user management with RBAC roles, system health, audit log, and billing controls" width="100%" />
+
+### Developer Dashboard
+
+<img src="./docs/assets/ui/developer-dashboard.png" alt="Developer Dashboard – live log viewer, CI pipeline steps, and environment configuration" width="100%" />
 
 ## Badges
 
