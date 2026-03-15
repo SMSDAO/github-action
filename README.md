@@ -8,6 +8,8 @@ GitHub Action to run Renovate self-hosted.
 
 ## Table of contents
 
+- [Documentation](#documentation)
+- [UI Preview](#ui-preview)
 - [Badges](#badges)
 - [Options](#options)
   - [`configurationFile`](#configurationfile)
@@ -28,6 +30,35 @@ GitHub Action to run Renovate self-hosted.
 - [Troubleshooting](#troubleshooting)
   - [Debug Logging](#debug-logging)
   - [Special token requirements when using the `github-actions` manager](#special-token-requirements-when-using-the-github-actions-manager)
+
+## Documentation
+
+Full documentation is available in the [`docs/`](./docs/) directory:
+
+| Document                                            | Description                                                   |
+| --------------------------------------------------- | ------------------------------------------------------------- |
+| [Architecture](./docs/architecture.md)              | Project structure, build system, module map, release strategy |
+| [Deployment](./docs/deployment.md)                  | Setup guide, configuration table, GitHub App auth             |
+| [Environment Variables](./docs/env-vars.md)         | All supported env vars with defaults and filtering rules      |
+| [User Guide](./docs/guides/user-guide.md)           | Step-by-step getting-started guide with examples              |
+| [Admin Guide](./docs/guides/admin-guide.md)         | RBAC, billing controls, audit logging, security configuration |
+| [Developer Guide](./docs/guides/developer-guide.md) | Build system, CI/CD internals, debugging, contributing        |
+
+## UI Preview
+
+The screenshots below are **conceptual mockups** illustrating how operational metrics for a Renovate self-hosted deployment could be surfaced. They are not part of a shipped UI — this repository is a GitHub Action (not a web application).
+
+### User Dashboard
+
+<img src="./docs/assets/ui/user-dashboard.png" alt="Conceptual mockup – User view: activity metrics, managed repositories, weekly PR activity, and usage metering" width="100%" />
+
+### Admin Dashboard
+
+<img src="./docs/assets/ui/admin-dashboard.png" alt="Conceptual mockup – Admin view: repository scoping, system health, audit log, and billing controls" width="100%" />
+
+### Developer Dashboard
+
+<img src="./docs/assets/ui/developer-dashboard.png" alt="Conceptual mockup – Developer view: live log viewer, CI pipeline steps, and environment configuration" width="100%" />
 
 ## Badges
 

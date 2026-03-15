@@ -30,7 +30,8 @@
     "prettier-fix": "prettier --cache --write --ignore-unknown \"{**/*,*}.*\"",
     "release": "run-s clean build semantic-release",
     "semantic-release": "semantic-release",
-    "start": "run-s build && node dist"
+    "start": "run-s build && node dist",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@actions/core": "3.0.0",
